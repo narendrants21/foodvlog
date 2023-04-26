@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+  <head>
+  	<title>Table 06</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href='{% static "ca/css/style.css" %}'>
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-4">
+					<h2 class="heading-section">SHOPPING BAG</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						    	<th>&nbsp;</th>
+						    	<th>product</th>
+						    	<th>desc</th>
+						      <th>price</th>
+						      <th>quantity</th>
+						      <th>total</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  {% for i in ci %}
+						    <tr class="alert" role="alert">
+						    	<td>
+						    		<a href="{%  url 'remove' i.prodt.id %}" class="button"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></a>
+
+						    	</td>
+						    	<td>
+						    		<div class="image" >
+									<a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}"/></a>
+									</div>
+						    	</td>
+						      <td>
+						      	<div class="email">
+						      		<span>{{i.prodt.name}} </span>
+						      		<span>{{i.prodt.desc}}</span>
+						      	</div>
+						      </td>
+						      <td>{{i.prodt.price}}</td>
+
+								<td>   <a href="{%  url 'addcart' i.prodt.id %}"> <i class="fa fa-plus" style="font-size:20px;color:red"> </i> </a> <p style="font-size:20px">{{i.quan}}</p>  <a href="{%  url 'cart_decrement' i.prodt.id %}"> <i class="fa fa-minus" style="font-size:20px;color:red"></i> </a> </td>
+
+
+						  </td>
+						      <td>
+						      	<a> {{i.total}}</a>
+				        	</td>
+
+						  {% endfor %}
+						  </tbody>
+						</table>
+						<div>
+						<p>TOTAL <span class="price style=color:cyan"><b>${{t}}</b></span></p>
+							<br>
+							<br>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src='{% static "ca/js/jquery.min.js" %}'></script>
+  <script src='{% static "cs/js/popper.js" %}'></script>
+  <script src='{% static "ca/js/bootstrap.min.js" %}'></script>
+  <script src='{% static "ca/js/main.js" %}'></script>
+
+	</body>
+</html>
+{% endblock %}
+
